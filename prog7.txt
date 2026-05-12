@@ -1,0 +1,20 @@
+Ensure Kali Linux and Ubuntu vm are up and running. Ping from kali linux machine to Ubuntu
+1.
+𝑝𝑖𝑛𝑔 192. 168. 62. 133 #Ubuntu_ip
+2
+𝑠𝑢𝑑𝑜 𝑠𝑛𝑜𝑟𝑡 − 𝐴 𝑐𝑜𝑛𝑠𝑜𝑙𝑒 − 𝑐 /𝑒𝑡𝑐/𝑠𝑛𝑜𝑟𝑡/𝑠𝑛𝑜𝑟𝑡. 𝑐𝑜𝑛𝑓
+3
+Then in Kali linux machine run the hping2 tool commands. And observe Ubuntu snort output and Wireshark
+analyzer output for the flood of packets.
+a. 𝑠𝑢𝑑𝑜 ℎ𝑝𝑖𝑛𝑔3 − 1 − 𝑐 1 192. 168. 62. 133 #Ubuntu_ip
+b. 𝑠𝑢𝑑𝑜 ℎ𝑝𝑖𝑛𝑔3 − 1 − 𝑐 1 − 𝑖 5 192. 168. 62. 133 #Ubuntu_ip
+c. 𝑠𝑢𝑑𝑜 ℎ𝑝𝑖𝑛𝑔3 − 1 −− 𝑓𝑎𝑠𝑡𝑒𝑟 192. 168. 62. 133
+d. 𝑠𝑢𝑑𝑜 ℎ𝑝𝑖𝑛𝑔3 − 1 −− 𝑓𝑎𝑠𝑡𝑒𝑟 192. 168. 62. 133
+e. 𝑠𝑢𝑑𝑜 ℎ𝑝𝑖𝑛𝑔3 − 1 − 𝑎 192. 168. 62. 139 192. 168. 62. 133
+f. 𝑠𝑢𝑑𝑜 ℎ𝑝𝑖𝑛𝑔3 − 1 –𝑟𝑎𝑛𝑑 − 𝑠𝑜𝑢𝑟𝑐𝑒 192. 168. 62. 133
+TCP 3-way handshake
+
+In kali linux browser, type metaspoiltable_IP or Ubuntu_ip to launch DVWA application, login.
+a. 𝑠𝑢𝑑𝑜 ℎ𝑝𝑖𝑛𝑔3 − 𝑆 − 𝑐 1 − 𝑝 80 192. 168. 62. 129
+b. 𝑠𝑢𝑑𝑜 ℎ𝑝𝑖𝑛𝑔3 − 𝑆 − 𝑐 1 − 𝑝 80 − 𝑖 5 192. 168. 62. 129
+c. 𝑠𝑢𝑑𝑜 ℎ𝑝𝑖𝑛𝑔3 − 𝑆 −− 𝑓𝑙𝑜𝑜𝑑 − 𝑝 80 192. 168. 62. 129

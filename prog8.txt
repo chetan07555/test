@@ -1,0 +1,41 @@
+In ubuntu 
+1
+sudo apt-get install snort
+
+2
+cd /etc/snort/rules
+
+3
+sudo snort -T -c /etc/snort/snort.conf
+
+4
+sudo snort -A console -c /etc/snort/snort.conf
+
+In kali
+5
+nmap Ubuntu_ip
+
+back to ubuntu
+6
+cd /etc/snort/rules
+7
+vi local.rules
+8
+add the rules 
+alert icmp $EXTERNAL_NET any -&gt; HOME_NET any (msg:” Varsha”; sid:5889; rev:1;)
+alert tcp any any -&gt; $HOME_NET 21 (msg:” FTP attempted”; sid:60001; rev:1;)
+alert tcp any any -&gt; $HOME_NET 22 (msg:”SSh attempted”; sid:600022; rev:1;)
+
+9
+sudo snort -T -c /etc/snort/snort.conf
+10
+sudo snort -A console -c /etc/snort/snort.conf
+
+back to kali 
+1. ping 192.168.111.133
+now go check in Ubuntu VM. Varsha msg is detected and displayed while pinging
+2. ftp 192.168.111.133
+now go check in Ubuntu VM. FTP attempted msg is detected and displayed performing FTP connection
+3. ssh ubuntu@192.168.111.133
+now go check in Ubuntu VM. SSH attempted msg is detected and displayed performing SSH
+Connection.
