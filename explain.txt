@@ -1,0 +1,195 @@
+1. Nessus
+What is Nessus?
+
+Nessus is a vulnerability scanner used to identify security weaknesses in systems, servers, and networks.
+
+Why is it used?
+Detect vulnerabilities
+Missing patches
+Weak configurations
+Open ports
+Compliance checks
+How does it work?
+Scans target systems.
+Compares findings with vulnerability database.
+Generates reports with severity levels.
+Viva Answer
+
+Nessus is an automated vulnerability assessment tool used to identify security flaws, misconfigurations, and missing patches in networks and systems.
+
+2. Wireshark
+What is Wireshark?
+
+A network packet analyzer.
+
+Why is it used?
+Capture network traffic
+Analyze protocols
+Troubleshoot network issues
+Detect suspicious activity
+Example
+
+Monitor packets between Kali and Metasploitable.
+
+Viva Answer
+
+Wireshark captures and analyzes packets flowing through a network, helping identify attacks, data leaks, and protocol issues.
+
+3. Nmap
+What is Nmap?
+
+Network Mapper.
+
+Why is it used?
+Host discovery
+Port scanning
+Service detection
+OS detection
+Example
+nmap 192.168.56.102
+
+Your result:
+
+21 FTP
+22 SSH
+80 HTTP
+3306 MySQL
+Viva Answer
+
+Nmap is used to discover hosts and identify open ports and services running on a target machine.
+
+4. Metasploit
+What is Metasploit?
+
+Penetration testing framework.
+
+Why is it used?
+Vulnerability validation
+Security testing
+Exploit research
+Components
+Exploit
+
+Code that targets a vulnerability.
+
+Payload
+
+Code executed after successful exploitation.
+
+Auxiliary
+
+Scanning modules.
+
+Viva Answer
+
+Metasploit is a penetration testing framework used to assess and validate vulnerabilities in authorized environments.
+
+5. CrypTool
+What is CrypTool?
+
+Cryptography learning and analysis tool.
+
+Why is it used?
+Encryption
+Decryption
+Digital signatures
+Hashing
+Example
+
+Digital Signature Lab.
+
+Viva Answer
+
+CrypTool helps understand cryptographic concepts such as RSA, AES, hashing, and digital signatures through practical demonstrations.
+
+6. Burp Suite
+What is Burp Suite?
+
+Web application security testing tool.
+
+Why is it used?
+Intercept requests
+Modify requests
+Analyze web applications
+Important Modules
+Proxy
+
+Captures browser traffic.
+
+Repeater
+
+Replays requests.
+
+Intruder
+
+Automates testing.
+
+Scanner
+
+Finds vulnerabilities.
+
+Viva Answer
+
+Burp Suite is used to analyze and test web application security by intercepting and modifying HTTP requests and responses.
+
+7. Hydra
+What is Hydra?
+
+Password auditing tool.
+
+Why is it used?
+Password strength assessment
+Credential testing in authorized environments
+Supported Protocols
+FTP
+SSH
+HTTP
+SMB
+Viva Answer
+
+Hydra is a password auditing tool used to evaluate the strength of authentication mechanisms.
+
+8. Hping3
+What is Hping3?
+
+Packet crafting and network testing tool.
+
+Why is it used?
+TCP testing
+ICMP testing
+Firewall testing
+Packet analysis
+Example
+hping3 -1 <ip>
+
+ICMP packet.
+
+Viva Answer
+
+Hping3 is a packet generation tool used to craft and analyze custom TCP, UDP, and ICMP packets.
+
+9. Snort
+What is Snort?
+
+Intrusion Detection and Prevention System (IDS/IPS).
+
+Why is it used?
+Detect attacks
+Monitor traffic
+Generate alerts
+Components
+Packet Decoder
+
+Reads packets.
+
+Detection Engine
+
+Applies rules.
+
+Logging Module
+
+Stores alerts.
+
+Viva Answer
+
+Snort is an open-source IDS/IPS that monitors network traffic and generates alerts when suspicious activity matches predefined rules.

